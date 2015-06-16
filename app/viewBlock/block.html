@@ -1,0 +1,92 @@
+<div class="container-fluid" ng-controller="ViewBlockCtrl as blockCtrl">
+
+    <div class="page-header">
+        <h1>Block #{{blockCtrl.blockData.height}}</h1>
+    </div>
+
+    <div class="panel panel-primary">
+        <table class="table table">
+            <tbody>
+                <tr>
+                    <td>Hash</td>
+                    <td><a ng-href="#/viewBlock/{{blockCtrl.blockData.hash}}">{{blockCtrl.blockData.hash}}</a></td>
+                </tr>
+                <tr>
+                    <td>Previous</td>
+                    <td><a ng-href="#/viewBlock/{{blockCtrl.blockData.prev_block}}">{{blockCtrl.blockData.prev_block}}</a></td>
+                </tr>
+                <tr>
+                    <td>Time</td>
+                    <td>{{(blockCtrl.blockData.time*1000) | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+                </tr>
+                <tr>
+                    <td>Transactions</td>
+                    <td>{{blockCtrl.blockData.n_tx}}</td>
+                </tr>
+                <tr>
+                    <td>Total BTC</td>
+                    <td>{{blockCtrl.totalBTC / 100000000}}</td>
+                </tr>
+                <tr>
+                    <td>Size</td>
+                    <td>{{blockCtrl.blockData.size}}</td>
+                </tr>
+                <tr>
+                    <td>Merkle Root</td>
+                    <td><a ng-href="#/viewBlock/{{blockCtrl.blockData.mrkl_root}}">{{blockCtrl.blockData.mrkl_root}}</td>
+                </tr>
+                <tr>
+                    <td>Nonce</td>
+                    <td>{{blockCtrl.blockData.nonce}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Transactions ({{blockCtrl.transactions.length}})</h3>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hash</th>
+                    <th>Size</th>
+                    <th>From (amount)</th>
+                    <th>To (amount)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr ng-repeat="transaction in blockCtrl.transactions">
+                    <td>{{transaction.hash}}</td>
+                    <td>{{transaction.size}}</td>
+
+                    <td>
+                        <table class="table table-bordered">
+                        <tr ng-repeat="row in transaction.inputs">
+                            <td>{{row.prev_out.addr}}</td>
+                            <td><strong>{{row.prev_out.value / 100000000}}</strong></td>
+                        </tr>
+                        </table>
+                    </td>
+
+                    <td>
+                        <table class="table table-bordered">
+                            <tr ng-repeat="row in transaction.out">
+                                <td>{{row.addr}}</td>
+                                <td><strong>{{row.value / 100000000}}</strong>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        Total: <strong>{{blockCtrl.getTotalOut(transaction) / 100000000;}}</strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

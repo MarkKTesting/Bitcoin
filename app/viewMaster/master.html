@@ -1,0 +1,56 @@
+<div class="container-fluid">
+
+    <div class="page-header">
+        <h1>Block Explorer</h1>
+    </div>
+
+    <div ng-controller="ViewMasterCtrl as master_ctrl">
+
+        {{ 'Latest hash is ' + master_ctrl.latestHash; }}
+    </div>
+
+    <div class="panel panel">
+        <form>
+            Search: <input >
+        </form>
+        <p></p>
+    </div>
+
+    <div class="panel panel-primary" ng-controller="ViewMasterCtrl as master_ctrl">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Blocks</h3>
+        </div>
+
+        <table class="table table">
+            <thead>
+                <tr>
+                    <th>Height</th>
+                    <th>Hash</th>
+                    <th>Time</th>
+                    <th>Transactions</th>
+                    <th>Bits</th>
+                    <th>Size (kB)</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="block in master_ctrl.rawObjects">
+                   <td>{{block.height}}</td>
+                   <td><a ng-href="#/viewBlock/{{block.hash}}">{{block.hash}}</a></td>
+                   <td>{{(block.time*1000) | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+                   <td>{{block.n_tx}}</td>
+                   <td>{{block.bits}}</td>
+                   <td>{{block.size/1000}}</td>
+               </tr>
+           </tbody>
+       </table>
+
+       <div class="panel-footer">
+           <button ng-click="master_ctrl.loadPrevious();">
+               Previous
+           </button>
+       </div>
+   </div>
+</div>
+</body>
+</html>
