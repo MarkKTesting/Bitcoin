@@ -28,6 +28,21 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
+
+  <!-- BEGIN NAV BAR -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" ng-href="#/">Block Explorer</a>
+      </div>
+
   <div ng-view></div>
 
   <!-- In production use:
@@ -36,6 +51,8 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
+  <script src="apiservice.js"></script>
+  <script src="searchbox.js"></script>
   <script src="viewMaster/master.js"></script>
   <script src="viewBlock/block.js"></script>
   <script src="components/version/version.js"></script>

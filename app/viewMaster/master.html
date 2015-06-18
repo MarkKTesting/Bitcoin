@@ -1,22 +1,19 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="ViewMasterCtrl as master_ctrl">
 
     <div class="page-header">
         <h1>Block Explorer</h1>
     </div>
 
-    <div ng-controller="ViewMasterCtrl as master_ctrl">
-
+    <div >
         {{ 'Latest hash is ' + master_ctrl.latestHash; }}
     </div>
 
-    <div class="panel panel">
-        <form>
-            Search: <input >
-        </form>
-        <p></p>
+    <div ng-controller="BitcoinSearchController" style="margin: 20px">
+        <my-search-box search-text="searchText" is-searching="isSearching"></my-search-box>
+        <my-search-results is-searching="isSearching" search-results="citySearchResults" search-text="searchText"></my-search-results>
     </div>
 
-    <div class="panel panel-primary" ng-controller="ViewMasterCtrl as master_ctrl">
+    <div class="panel panel-primary">
 
         <div class="panel-heading">
             <h3 class="panel-title">Blocks</h3>
@@ -52,5 +49,3 @@
        </div>
    </div>
 </div>
-</body>
-</html>

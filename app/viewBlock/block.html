@@ -1,5 +1,9 @@
 <div class="container-fluid" ng-controller="ViewBlockCtrl as blockCtrl">
 
+    <div ng-controller="BitcoinSearchController" style="margin: 20px">
+        <my-search-box search-text="searchText" is-searching="isSearching" has-failed="hasFailed"></my-search-box>
+    </div>
+
     <div class="page-header">
         <h1>Block #{{blockCtrl.blockData.height}}</h1>
     </div>
@@ -33,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>Merkle Root</td>
-                    <td><a ng-href="#/viewBlock/{{blockCtrl.blockData.mrkl_root}}">{{blockCtrl.blockData.mrkl_root}}</td>
+                    <td>{{blockCtrl.blockData.mrkl_root}}</td>
                 </tr>
                 <tr>
                     <td>Nonce</td>
@@ -59,7 +63,6 @@
             </thead>
 
             <tbody>
-
                 <tr ng-repeat="transaction in blockCtrl.transactions">
                     <td>{{transaction.hash}}</td>
                     <td>{{transaction.size}}</td>

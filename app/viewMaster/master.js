@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.viewMaster', ['ngRoute'])
+angular.module('myApp.viewMaster', ['ngRoute', 'apiservice'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/viewMaster', {
@@ -9,16 +9,16 @@ angular.module('myApp.viewMaster', ['ngRoute'])
         });
     }])
 
-    .controller('ViewMasterCtrl', [ '$http', function($http){
+    .controller('ViewMasterCtrl', [ '$scope', '$http', 'bitcoinapi', function($scope, $http, bitcoinapi){
         var master = this;
         master.latestHash = "";
         master.rawObjects = [];
 
-        //Add to the end of api calls to identify ourself
-        var apiKeyAppend = "";
-
         // Get the hash for the latest block
-        $http.get('api_alternate/latestblock' + apiKeyAppend).success(function(data){
+        bitcoinapi.getLastHash().then(function(data){
+            //Log the latest hash and its index
+            master.latestHash = data;
+
             master.loadPrevious = function () {
                 var currentHead = master.rawObjects[master.rawObjects.length-1];
 
@@ -26,12 +26,9 @@ angular.module('myApp.viewMaster', ['ngRoute'])
                 getBlockFromHash(currentHead.hash);
             };
 
-            //Log the latest hash and its index
-            master.latestHash = data.hash;
-
             var getBlockFromHash = function(hash_to_get)
             {
-                $http.get('api_alternate/rawblock/' + hash_to_get  + apiKeyAppend).success(function(block_data){
+                bitcoinapi.getBlock(hash_to_get).then(function(block_data){
                     master.rawObjects.push(block_data);
 
                     //Change the number here to determine how many blocks are displayed
