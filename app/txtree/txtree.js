@@ -133,7 +133,6 @@ angular.module('myApp.txtree', ['ngRoute', 'apiservice'])
                             .on("click", click);
 
                         nodeEnter.append("circle")
-                            .attr("class", "unspent")
                             .attr("r", 1e-6)
                             .style("fill", function(d)
                                             {
@@ -144,9 +143,10 @@ angular.module('myApp.txtree', ['ngRoute', 'apiservice'])
                                             });
 
                         nodeEnter.append("text")
-                            .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
+                            .attr("fill", "green")
+                            .attr("y", function(d) { return 24; })
                             .attr("dy", ".35em")
-                            .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+                            .attr("text-anchor", function(d) { return "middle"; })
                             .text(function(d) { return /*d.name + */"(" + d.value + " BTC)"; })
                             .style("fill-opacity", 1e-6);
 
@@ -217,9 +217,7 @@ angular.module('myApp.txtree', ['ngRoute', 'apiservice'])
                     function click(d) {
                         scope.$apply(scope.confirmAction({"item": d}));
                     }
-
                 });
             }
         }
-    })
-;
+    });
