@@ -1,6 +1,10 @@
+'use strict';
+
 angular.module('apiservice', [])
 .service('bitcoinapi', ['$http', '$log', '$q', '$timeout', function($http, $log, $q, $timeout) {
+
         //Add to the end of api calls to identify ourselves
+        var apiKey = "";
         var apiKeyAppend = "";
 
         var cachedLastHash = null;
@@ -75,7 +79,33 @@ angular.module('apiservice', [])
             return deferred.promise;
         };
 
+        var txCache = {};
+        var treeFunc = function(transactionId)
+        {
+            var deferred = $q.defer();
+
+            if ( txCache[transactionId] ) {
+                deferred.resolve(txCache[transactionId]);
+            }
+            else
+            {
+                var promise = $http.get('api_alternate/tree/' + transactionId + '?api_code=' + apiKey + '&format=json');
+
+                promise.success(function (data, status) {
+                    txCache[transactionId] = data;
+                    deferred.resolve(data);
+                });
+
+                promise.error( function(){
+                    deferred.reject();
+                });
+
+            }
+            return deferred.promise;
+        };
+
         this.getLastHash = getLastHashFunc;
         this.getBlock = newGetBlockFunc;
         this.doSearch = searchFunc;
+        this.getTree = treeFunc;
     }]);

@@ -13,6 +13,7 @@ var app = connect();
 app.use('/api', proxy(url.parse('http://blockexplorer.com/q')));
 app.use('/api_alternate', proxy(url.parse('https://blockchain.info/')));
 app.use('/raw_block', proxy(url.parse('https://blockchain.info/rawblock/')));
+app.use('/tree', proxy(url.parse('https://blockchain.info/tree/')));
 
 var serve = serveStatic('app', {'index': ['index.html', 'index.htm']});
 // Serve up public/ftp folder

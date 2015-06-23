@@ -1,5 +1,27 @@
 /* app css stylesheet */
 
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  /*fill: #fff;*/
+  stroke: orange;
+  stroke-width: 3px;
+}
+
+
+.node text {
+  font: 12px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;

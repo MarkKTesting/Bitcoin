@@ -6,6 +6,7 @@ angular.module('myApp', [
   'myApp.searchbox',
   'myApp.viewMaster',
   'myApp.viewBlock',
+  'myApp.txtree',
   'myApp.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
@@ -14,5 +15,11 @@ config(['$routeProvider', function($routeProvider) {
     controller: 'ViewBlockCtrl',
     controllerAs: 'block'
   })
+  .when('/txtree/:txid', {
+    templateUrl: 'txtree/txtree.html',
+    controller: 'TxTreeCtrl',
+    controllerAs: 'block'
+  })
+
   .otherwise( {redirectTo: '/viewMaster'} );
 }]);

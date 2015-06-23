@@ -64,7 +64,7 @@
 
             <tbody>
                 <tr ng-repeat="transaction in blockCtrl.transactions">
-                    <td>{{transaction.hash}}</td>
+                    <td><a ng-href="#/txtree/{{transaction.tx_index}}">{{transaction.hash}}</a></td>
                     <td>{{transaction.size}}</td>
 
                     <td>
