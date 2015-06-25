@@ -1,5 +1,5 @@
 angular.module("myApp.searchbox", ['apiservice'])
-    .controller('BitcoinSearchController', function($scope, $timeout, $location, bitcoinapi){
+    .controller('BitcoinSearchController', [ '$scope', '$timeout', '$location', 'bitcoinapi', function($scope, $timeout, $location, bitcoinapi){
         $scope.$watch("searchText", function(searchText) {
             if (searchText) {
                 $scope.citySearchResults = [];
@@ -18,7 +18,7 @@ angular.module("myApp.searchbox", ['apiservice'])
                 $scope.citySearchResults = [];
             }
         });
-    })
+    }])
 
     .directive('mySearchBox', function() {
         return {
@@ -29,7 +29,7 @@ angular.module("myApp.searchbox", ['apiservice'])
                 isSearching: '=',
                 hasFailed: '='
             },
-            controller: function($scope) {
+            controller: ['$scope', function($scope) {
                 $scope.localSearchText = '';
                 $scope.clearSearch = function() {
                     $scope.searchText = "";
@@ -38,7 +38,7 @@ angular.module("myApp.searchbox", ['apiservice'])
                 $scope.doSearch = function() {
                     $scope.searchText = $scope.localSearchText;
                 };
-            },
+            }],
             replace: true,
             template:
             '<form>' +

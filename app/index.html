@@ -34,8 +34,8 @@
     <div ng-controller="BitcoinSearchController" style="margin-left: 22px">
       <my-search-box search-text="searchText" is-searching="isSearching"></my-search-box>
     </div>
-  </div>
 
+  </div>
     <div class="container-fluid">
 
       <div ng-view></div>
@@ -48,15 +48,22 @@
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+
+<!--
   <script src="app.js"></script>
   <script src="apiservice.js"></script>
-  <script src="searchbox.js"></script>
   <script src="viewMaster/master.js"></script>
   <script src="viewBlock/block.js"></script>
   <script src="txtree/txtree.js"></script>
   <script src="bitcoinutils/filters.js"></script>
+  <script src="searchbox.js"></script>
+-->
+
+  <script src="deploy/app.min.js"></script>
+
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+
 </body>
 </html>
