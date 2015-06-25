@@ -7,7 +7,8 @@ angular.module('myApp', [
   'myApp.viewMaster',
   'myApp.viewBlock',
   'myApp.txtree',
-  'myApp.version'
+  'myApp.version',
+  'bitcoinFilters'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/viewBlock/:blockId', {

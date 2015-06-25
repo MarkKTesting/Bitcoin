@@ -8,7 +8,7 @@ angular.module("myApp.searchbox", ['apiservice'])
 
                 bitcoinapi.doSearch(searchText).then(function () {
                     $scope.isSearching = false;
-                    $location.path('viewBlock/' + '000000000000000007b230684d60ccd77e36f587692f53ba601fb21c53b5e688');
+                    $location.path('viewBlock/' + searchText);
                 }, function(errorMsg){
                     $scope.isSearching = false;
                     $scope.hasFailed = true;

@@ -1,46 +1,43 @@
 <div class="container-fluid" ng-controller="ViewMasterCtrl as master_ctrl">
 
-    <div class="page-header">
-        <h1>Block Explorer</h1>
-    </div>
-
-    <div >
-        {{ 'Latest hash is ' + master_ctrl.latestHash; }}
-    </div>
-
-    <div ng-controller="BitcoinSearchController" style="margin: 20px">
-        <my-search-box search-text="searchText" is-searching="isSearching"></my-search-box>
-        <my-search-results is-searching="isSearching" search-results="citySearchResults" search-text="searchText"></my-search-results>
-    </div>
-
     <div class="panel panel-primary">
 
         <div class="panel-heading">
             <h3 class="panel-title">Blocks</h3>
         </div>
 
-        <table class="table table">
-            <thead>
-                <tr>
-                    <th>Height</th>
-                    <th>Hash</th>
-                    <th>Time</th>
-                    <th>Transactions</th>
-                    <th>Bits</th>
-                    <th>Size (kB)</th>
-                </tr>
-            </thead>
-            <tbody>
-               <tr ng-repeat="block in master_ctrl.rawObjects">
-                   <td>{{block.height}}</td>
-                   <td><a ng-href="#/viewBlock/{{block.hash}}">{{block.hash}}</a></td>
-                   <td>{{(block.time*1000) | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
-                   <td>{{block.n_tx}}</td>
-                   <td>{{block.bits}}</td>
-                   <td>{{block.size/1000}}</td>
-               </tr>
-           </tbody>
-       </table>
+        <div class="gallery">
+            <div class="card" ng-repeat="block in master_ctrl.rawObjects">
+                <a ng-href="#/viewBlock/{{block.hash}}"> </a>
+                <h1>#{{block.height}}</h1>
+                <!--Trim leading zeroes to stop the card growing too wide-->
+                <h2>{{block.hash | trimLeadingZeroes}}</h2>
+
+                <table>
+                    <tr>
+                        <td class="tableHeading">Date Created</td>
+                        <td class="tableContent">{{(block.time*1000) | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tableHeading">Transactions</td>
+                        <td class="tableContent">{{block.n_tx}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tableHeading">Size (kB)</td>
+                        <td class="tableContent">{{block.size/1000}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tableHeading">Bits</td>
+                        <td class="tableContent">{{block.bits}}</td>
+                    </tr>
+                    <tr>
+                        <td class="tableHeading">Total BTC</td>
+                        <td class="tableContent">{{master_ctrl.getTotalOut(block) / 100000000;}} BTC</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
 
        <div class="panel-footer">
            <button ng-click="master_ctrl.loadPrevious();">

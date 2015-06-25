@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('apiservice', [])
-.service('bitcoinapi', ['$http', '$log', '$q', '$timeout', function($http, $log, $q, $timeout) {
+.service('bitcoinapi', ['$http', '$log', '$q', function($http, $log, $q) {
 
         //Add to the end of api calls to identify ourselves
         var apiKey = "";

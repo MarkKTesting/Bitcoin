@@ -1,9 +1,5 @@
 <div class="container-fluid" ng-controller="ViewBlockCtrl as blockCtrl">
 
-    <div ng-controller="BitcoinSearchController" style="margin: 20px">
-        <my-search-box search-text="searchText" is-searching="isSearching" has-failed="hasFailed"></my-search-box>
-    </div>
-
     <div class="page-header">
         <h1>Block #{{blockCtrl.blockData.height}}</h1>
     </div>

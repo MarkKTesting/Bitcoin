@@ -14,6 +14,20 @@ angular.module('myApp.viewMaster', ['ngRoute', 'apiservice'])
         master.latestHash = "";
         master.rawObjects = [];
 
+        //Function to calculate the total out value BTC for a transaction
+        this.getTotalOut = function(block){
+            var totRet = 0.0;
+
+            for ( var t = 0; t < block.tx.length; ++t ) {
+                //Sum up the value of each out item
+                for (var i = 0; i < block.tx[t].out.length; ++i) {
+                    totRet += block.tx[t].out[i].value;
+                }
+            }
+
+            return totRet;
+        };
+
         // Get the hash for the latest block
         bitcoinapi.getLastHash().then(function(data){
             //Log the latest hash and its index
@@ -32,7 +46,7 @@ angular.module('myApp.viewMaster', ['ngRoute', 'apiservice'])
                     master.rawObjects.push(block_data);
 
                     //Change the number here to determine how many blocks are displayed
-                    if ( master.rawObjects.length < 3 )
+                    if ( master.rawObjects.length < 9 )
                     {
                         getBlockFromHash(block_data.prev_block);
                     }
