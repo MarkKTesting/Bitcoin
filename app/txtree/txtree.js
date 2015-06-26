@@ -1,4 +1,9 @@
 'use strict';
+define([
+    'angular',
+    'angularRoute',
+    'bitcoinutils/apiservice'
+], function(angular) {
 
 angular.module('myApp.txtree', ['ngRoute', 'apiservice'])
     .config(['$routeProvider', function($routeProvider){
@@ -221,3 +226,5 @@ angular.module('myApp.txtree', ['ngRoute', 'apiservice'])
             }
         }
     });
+});
+

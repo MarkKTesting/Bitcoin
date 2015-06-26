@@ -1,67 +1,25 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="css/app.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
-
-  <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="js/bootstrap.min.js"></script>
+  <title>My AngularJS App</title>
 </head>
-<body>
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+<body ng-cloak>
+<div class="header">
+  <a ng-href="#/">Block Explorer</a>
 
-  <div class="header">
-    <a ng-href="#/">Block Explorer</a>
-
-
-    <div ng-controller="BitcoinSearchController" style="margin-left: 22px">
-      <my-search-box search-text="searchText" is-searching="isSearching"></my-search-box>
-    </div>
-
+  <div ng-controller="BitcoinSearchController" style="margin-left: 22px">
+    <my-search-box search-text="searchText" is-searching="isSearching"></my-search-box>
   </div>
-    <div class="container-fluid">
 
-      <div ng-view></div>
-    </div>
+</div>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/d3/d3.js"></script>
+<div ng-view></div>
 
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-<!--
-  <script src="app.js"></script>
-  <script src="bitcoinutils/apiservice.js"></script>
-  <script src="viewMaster/master.js"></script>
-  <script src="viewBlock/block.js"></script>
-  <script src="txtree/txtree.js"></script>
-  <script src="bitcoinutils/filters.js"></script>
-  <script src="bitcoinutils/searchbox.js"></script>
--->
-  <script src="deploy/app.min.js"></script>
-
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
-
+<script data-main="require-config" src="bower_components/requirejs/require.js"></script>
 </body>
 </html>
