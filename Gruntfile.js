@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                 stripBanners: true
             },
             dist: {
-                src: ['app/app.js', 'app/apiservice.js', 'app/searchbox.js', '<%= meta.componentsJsFiles %>'],
+                src: ['app/app.js', 'app/searchbox.js', '<%= meta.componentsJsFiles %>'],
                 dest: '<%= meta.deployPath %>app.js'
             }
         },
