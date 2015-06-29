@@ -1,15 +1,25 @@
 <div class="container-fluid" ng-controller="ViewBlockCtrl as blockCtrl">
 
-    <div class="page-header">
+    <div class="page-header" ng-show="blockCtrl.blockData.hash">
         <h1>Block #{{blockCtrl.blockData.height}}</h1>
     </div>
 
     <div class="panel panel-primary">
-        <table class="table table">
+        <table class="table table" ng-show="blockCtrl.blockData.hash">
             <tbody>
                 <tr>
                     <td>Hash</td>
                     <td><a ng-href="#/viewBlock/{{blockCtrl.blockData.hash}}">{{blockCtrl.blockData.hash}}</a></td>
+                    <td>
+                        <form>
+                            <div>
+                                <button ng-click="blockCtrl.doVerify()" class="btn btn-small" style="margin: 25px">Verify Hash</button>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        {{blockCtrl.verifyResult}}
+                    </td>
                 </tr>
                 <tr>
                     <td>Previous</td>
@@ -43,7 +53,7 @@
         </table>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-show="blockCtrl.blockData.hash">
         <div class="panel-heading">
             <h3 class="panel-title">Transactions ({{blockCtrl.transactions.length}})</h3>
         </div>

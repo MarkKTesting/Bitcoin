@@ -98,11 +98,28 @@ define([
                 return deferred.promise;
             };
 
+            var verifyFunc = function(rawBlock)
+            {
+                var deferred = $q.defer();
+
+                var promise = $http.post('calchash', rawBlock);
+                promise.success( function(data, status) {
+                    deferred.resolve(data)
+                });
+
+                promise.error(function(){
+                    deferred.reject();
+                });
+
+                return deferred.promise;
+            };
+
             this.getLastHash = getLastHashFunc;
             this.getBlock = newGetBlockFunc;
             this.doSearch = searchFunc;
             this.getTree = treeFunc;
+            this.doVerify = verifyFunc;
         }
-        ]);
+    ]);
 });
 

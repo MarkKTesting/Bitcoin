@@ -16,6 +16,7 @@ define([
             //Receive the block hash in the route parameters
             this.blockHash = $routeParams.blockId;
             this.totalBTC = 0;
+            this.verifyResult = "";
 
             var container = this;
             var blockData = {};
@@ -31,6 +32,12 @@ define([
                 }
 
                 return totRet;
+            };
+
+            this.doVerify = function(){
+                bitcoinapi.doVerify(container.blockData).then(function(data){
+                    container.verifyResult = data;
+                });
             };
 
             bitcoinapi.getBlock($routeParams.blockId).then(function(block_data_result){
